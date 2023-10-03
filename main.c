@@ -3,32 +3,48 @@
 #include <math.h>
 int main(){
     float a,b,c;
-    float root1, root2, imaginary;
+    float x1, x2;
+    printf("Enter the coefficients:");
     scanf("%f,%f,%f",&a,&b,&c);
-    float d = pow(b,2)-(4*a*c);
-    switch(d>0)
-    {
-    case 1:
-        root1 =(-b+(sqrt(d)))/(2*a);
-        root2=(-b-(sqrt(d)))/(2*a);
-        printf("the 2 distinct real roots are %.2f and %.2f",root1,root2);
-        break;
-    case 0:
-        switch(d<0)
+    switch((int)a)
         {
-
-            case 1:
-                root1 = root2 = -b/2*a;
-                imaginary = sqrt(-d)/2*a;
-                printf("the 2 imaginary real roots are %.2f + i%2.f and %.2f + i%2.f",root1,imaginary,root2,imaginary);
-            break;
-            case 0:
-                root1 = root2 = -b/2*a;
-                printf("the 2 same real roots are %.2f and %.2f",root1,root2);
-                break;
+        case 1:printf("x^2");
+        case 0:break;
+        case -1:printf("-x^2");
+        default: printf("%dx^2",(int)a);
         }
+    if(b>0) {
+        printf("+%.2fx",b);
+    }else if(b<0){
+        printf("%.2fx",b);
+    }else printf("");
 
-    return 0;
+    if(c>0&&a==0&&b==0){printf("+%.2f = 0\n",c);}
+    else if(c>0){printf("+%.2f\n",c);}
+    else if(c<0){printf("%.2f\n",c);}
+    else printf("\n");
+
+
+
+    x1=(-b+(sqrt(b*b-4*a*c)))/(2*a);
+    x2=(-b-(sqrt(b*b-4*a*c)))/(2*a);
+    if((pow(b,2)-(4*a*c)<0))
+       {
+        printf("no solutions");
+        }else if(a==0&&b!=0)
+        {
+            printf("x = -c/b = -%.2f/%.2f",c,b);
+        }else if(a==0&&b==0&&c!=0)
+        {
+            printf("no solutions");
+        }else if(a==0&&b==0&&c==0)
+        {
+            printf("infinitely many solutions");
+        }
+        else (x1!=x2? printf("the roots are %.1f and %.1f",x1,x2):
+             printf("the root is %.1f",x1) );
+
+
+            return 0;
     }
-}
 
