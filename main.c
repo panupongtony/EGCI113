@@ -2,28 +2,28 @@
 #include <stdlib.h>
 #include <math.h>
 int main(){
-    float a,b,c;
+    int a,b,c;
     float x1, x2;
     printf("Enter the coefficients:");
-    scanf("%f,%f,%f",&a,&b,&c);
-    switch((int)a)
+    scanf("%d,%d,%d",&a,&b,&c);
+    switch(a)
         {
         case 1:printf("x^2");
         case 0:break;
         case -1:printf("-x^2");
-        default: printf("%dx^2",(int)a);
+        default: printf("%dx^2",a);
         }
-    if(b>0) {
-        printf("+%.2fx",b);
-    }else if(b<0){
-        printf("%.2fx",b);
-    }else printf("");
-
-    if(c>0&&a==0&&b==0){printf("+%.2f = 0\n",c);}
-    else if(c>0){printf("+%.2f\n",c);}
-    else if(c<0){printf("%.2f\n",c);}
-    else printf("\n");
-
+    if(a!=0&&b>0) printf("+");
+    switch(b)
+        {
+        case 1:printf("x");
+        case 0:break;
+        case -1:printf("-x");break;
+        default: printf("%dx",b);
+        }
+    if((a!=0||b!=0)&&c>0) printf("+");
+    if(c!=0) printf("%d=0",c);
+    printf("\n");
 
 
     x1=(-b+(sqrt(b*b-4*a*c)))/(2*a);
@@ -33,7 +33,7 @@ int main(){
         printf("no solutions");
         }else if(a==0&&b!=0)
         {
-            printf("x = -c/b = -%.2f/%.2f",c,b);
+            printf("x = -c/b = -%d/%d",c,b);
         }else if(a==0&&b==0&&c!=0)
         {
             printf("no solutions");
@@ -47,4 +47,3 @@ int main(){
 
             return 0;
     }
-
