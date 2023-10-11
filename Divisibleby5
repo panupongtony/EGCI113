@@ -1,0 +1,17 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    int range1,range2;
+    printf("Enter range:\n");
+    scanf("%d:%d",&range1,&range2);
+    while(range1<=range2)
+    {
+        if(range1%5==0){
+            printf("%d\n",range1);
+        }range1++;
+    }
+
+    return 0;
+}
