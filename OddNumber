@@ -1,0 +1,18 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    int counter = 1 ;
+   int num;
+   printf("Enter a number:");
+   scanf("%d",&num);
+    while(counter<=num)
+    {
+        if(counter%2)
+        printf("%d\n",counter);
+        counter ++;
+    }
+
+    return 0;
+}
