@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <stdlib.h>
+ int square(int);
+ int my_pow(int,int);
+ int sum(int x,int y);
+int main()
+{
+    int a =10;
+    printf("%d\n",square(a));
+    printf("%d\n",square(a+2));
+    printf("%d\n",square(4));
+    printf("%d\n",my_pow(5,13));
+    printf("%d\n",sum(5,13));
+    return 0;
+}
+int square(int x)
+{
+    x*=x;
+    return x;
+}
+int my_pow(int x, int y)
+{
+    int r = 1;
+    if(y==0) return 1;
+            for(int i = 1;i<=y;i++)
+            {
+                r*=x;
+            }
+            return r;
+}
+int sum(x,y)
+{
+    return x+y;
+}
