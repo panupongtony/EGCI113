@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <stdlib.h>
+int fac(int x);
+int cNr(int a, int b);
+int main()
+{
+    int x,y;
+    printf("Insert C(x,y):");
+    scanf("%d,%d",&x,&y);
+
+    printf("C(%d,%d) = %d",x,y,cNr(x,y));
+    return 0;
+}
+int fac(x)
+{
+    for(int i = x;i>2;i--)
+    {
+        x = x*(i-1);
+    }
+   return x;
+}
+int cNr(a,b)
+{
+    if(n==r)
+    {
+        return 1;
+    }
+    return fac(a)/(fac(b)*fac(a-b));
+}
