@@ -1,0 +1,75 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define size 40
+int main()
+{
+    int a[size][size];
+    int b[size][size];
+    int arow,acolumn,brow,bcolumn;
+    int product[size][size];
+    int sum = 0;
+
+
+    printf("Enter the number of dimension for matrix a:");
+    scanf("%d:%d",&arow,&acolumn);
+    printf("Enter the number of dimension for matrix a:");
+    scanf("%d:%d",&brow,&bcolumn);
+
+    if(acolumn!=brow)printf("Can't calculate");
+    else{
+        for(int i=0;i<arow;i++)
+        {
+            for(int j=0;j<acolumn;j++)
+            {
+                printf("Enter matrix a row %d column %d: ",i+1,j+1);
+                scanf("%d",&a[i][j]);
+            }
+        }
+        for(int i=0;i<arow;i++)
+        {
+            for(int j=0;j<acolumn;j++)
+            {
+                printf("%d ",a[i][j]);
+            }
+            printf("\n");
+        }
+        for(int i=0;i<brow;i++)
+        {
+            for(int j=0;j<bcolumn;j++)
+            {
+                printf("Enter matrix b row %d column %d: ",i+1,j+1);
+                scanf("%d",&b[i][j]);
+            }
+        }
+        for(int i=0;i<brow;i++)
+        {
+            for(int j=0;j<bcolumn;j++)
+            {
+                printf("%d ",b[i][j]);
+            }
+            printf("\n");
+        }
+        for(int i=0;i<arow;i++)
+        {
+            for(int j=0;j<bcolumn;j++)
+            {
+                for(int k=0;k<acolumn;k++)
+                {
+                    sum+=a[i][k]*b[k][j];
+                }
+                product[i][j] = sum;
+                sum = 0;
+            }
+        }
+        for(int i=0;i<arow;i++)
+        {
+            for(int j=0;j<bcolumn;j++)
+            {
+                printf("%d ",product[i][j]);
+            }
+            printf("\n");
+        }
+    }
+
+    return 0;
+}
