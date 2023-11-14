@@ -3,26 +3,38 @@
 #include <string.h>
 int main()
 {
-    char str1[10],str2[10],str3[10];
-    printf("String1:");
-    gets(str1);
-    printf("%s\n", str1);
-    printf("String2:");
-    gets(str2);
-    printf("%s\n", str2);
-    printf("String3:");
-    gets(str3);
-    printf("%s\n", str3);
-    strcat(str1,str3);
-
-    for(int i = strlen(str1)-1;i>=0;i--)
+    char str[3][30];
+    for(int i=0;i<3;i++)
     {
-        if(str1[i]=='a'||str1[i]=='e'||str1[i]=='i'||str1[i]=='o'||str1[i]=='u')
+        printf("Input String %d: ",i);
+        fgets(str[i],30,stdin);
+    }
+    
+    char first[30],last[30];
+    strcpy(first,str[0]);
+    if(strcmp(first,str[1])<0)
+        strcpy(first,str[1]);
+    if(strcmp(first,str[2])<0)
+        strcpy(first,str[2]);
+    strcpy(last,str[0]);
+    if(strcmp(last,str[1])>0)
+        strcpy(last,str[1]);
+    if(strcmp(last,str[2])>0)
+        strcpy(last,str[2]);
+    printf("The first word is:%s",first);
+    printf("The last word is:%s",last);
+
+    strcat(first,last);
+
+    printf("Concatenate 2 strings:%s",first);
+    for(int i = strlen(first)-1;i>=0;i--)
+    {
+        if(first[i]=='a'||first[i]=='e'||first[i]=='i'||first[i]=='o'||first[i]=='u')
         {
-            printf("%c",toupper(str1[i]));
+            printf("%c",toupper(first[i]));
             continue;
         }
-        printf("%c",str1[i]);
+        printf("%c",first[i]);
     }
 
     return 0;
