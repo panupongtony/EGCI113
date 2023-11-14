@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+int main()
+{
+    char str1[10],str2[10],str3[10];
+    printf("String1:");
+    gets(str1);
+    printf("%s\n", str1);
+    printf("String2:");
+    gets(str2);
+    printf("%s\n", str2);
+    printf("String3:");
+    gets(str3);
+    printf("%s\n", str3);
+    strcat(str1,str3);
+
+    for(int i = strlen(str1)-1;i>=0;i--)
+    {
+        if(str1[i]=='a'||str1[i]=='e'||str1[i]=='i'||str1[i]=='o'||str1[i]=='u')
+        {
+            printf("%c",toupper(str1[i]));
+            continue;
+        }
+        printf("%c",str1[i]);
+    }
+
+    return 0;
+
+}
