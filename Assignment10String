@@ -1,32 +1,35 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#define size 3
 int main()
 {
-    char str[3][30];
-    for(int i=0;i<3;i++)
+    char str[size][30];
+    for(int i=0;i<size;i++)
     {
         printf("Input String %d: ",i);
-        fgets(str[i],30,stdin);
+        scanf("%s",str[i]);
     }
-    
+
     char first[30],last[30];
     strcpy(first,str[0]);
-    if(strcmp(first,str[1])<0)
-        strcpy(first,str[1]);
-    if(strcmp(first,str[2])<0)
-        strcpy(first,str[2]);
+    for(int i =0; i<size;i++)
+    {
+          if(strcmp(first,str[i])>0)
+        strcpy(first,str[i]);
+    }
     strcpy(last,str[0]);
-    if(strcmp(last,str[1])>0)
-        strcpy(last,str[1]);
-    if(strcmp(last,str[2])>0)
-        strcpy(last,str[2]);
-    printf("The first word is:%s",first);
-    printf("The last word is:%s",last);
+    for(int i =0; i<3;i++)
+    {
+          if(strcmp(last,str[i])<0)
+        strcpy(last,str[i]);
+    }
+    printf("The first word is:%s\n",first);
+    printf("The last word is:%s\n",last);
 
     strcat(first,last);
 
-    printf("Concatenate 2 strings:%s",first);
+    printf("Concatenate 2 strings:%s\n",first);
     for(int i = strlen(first)-1;i>=0;i--)
     {
         if(first[i]=='a'||first[i]=='e'||first[i]=='i'||first[i]=='o'||first[i]=='u')
