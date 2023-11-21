@@ -1,0 +1,117 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define Size 5
+
+
+struct student{
+char name[30];
+double score;
+char grade;
+int dd,mm,yy;
+};
+void showstudent(struct student cst[]);
+int getStudent(struct student cst[]);
+void convertGrade(struct student cst[]);
+void printHighest(struct student cst[]);
+int main()
+{
+
+    struct student cst[Size];
+    getStudent(cst);
+    showstudent(cst);
+    convertGrade(cst);
+    printHighest(cst);
+    int youngestyear = cst[0].yy;
+    int youngestmonth = cst[0].mm;
+    int youngestday = cst[0].dd;
+    int youngest;
+    for (int i = 0; i<Size; i++)
+    {
+        if(cst[i].yy<youngestyear)
+        {
+            youngestyear = cst[i].yy;
+            youngest = i;
+        }
+        else if(cst[i].yy==youngestyear)
+        {
+            if(cst[i].mm<youngestmonth)
+            {
+                youngestmonth = cst[i].mm;
+                youngest = i;
+            }
+
+            else if(cst[i].mm==youngestmonth)
+            {
+                if(cst[i].dd<youngestday)
+                {
+                    youngestday=cst[i].dd;
+                    youngest = i;
+                }
+            }
+        }
+    }
+    printf("The youngest student info:");
+    printf("Name:%s\n",cst[youngest].name);
+    printf("Score:%.2lf\n",cst[youngest].score);
+    printf("Grade:%c\n",cst[youngest].grade);
+
+    return 0;
+}
+void showstudent(struct student cst[])
+{
+    for (int i = 0; i<Size; i++)
+    {
+        printf("Student#%d ",i+1);
+        printf("Name:%s\n",cst[i].name);
+        printf("Score:%lf\n",cst[i].score);
+    }
+}
+int getStudent(struct student cst[])
+{
+  for (int i = 0; i<Size; i++)
+    {
+        printf("Enter name#%d:",i+1);
+        scanf("%s",cst[i].name);
+        printf("Score:");
+        scanf("%lf",&cst[i].score);
+        printf("dd:mm:yy");
+        scanf("%d:%d:%d",&cst[i].dd,&cst[i].mm,&cst[i].yy);
+    }
+}
+void convertGrade(struct student cst[])
+{
+     for (int i = 0; i<Size; i++)
+    {
+
+        if(80<=cst[i].score)
+        {
+            cst[i].grade = 'A';
+        }else if(70<=cst[i].score)
+        {
+            cst[i].grade = 'B';
+        }else if(60<=cst[i].score)
+        {
+            cst[i].grade = 'C';
+        }else cst[i].grade = 'D';
+
+        printf("Student Name:%s got %c\n",cst[i].name,cst[i].grade);
+    }
+}
+void printHighest(struct student cst[])
+{
+    double max = cst[0].score;
+    int maxstudent = 0;
+    for (int i = 0; i<Size; i++)
+    {
+        if(cst[i].score>max)
+        {
+            max = cst[i].score;
+            maxstudent = i;
+        }
+    }
+
+    printf("The highest score student info:\n");
+    printf("Name:%s\n",cst[maxstudent].name);
+    printf("Score:%.2lf\n",cst[maxstudent].score);
+    printf("%c\n",cst[maxstudent].grade);
+}
