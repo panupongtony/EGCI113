@@ -1,0 +1,76 @@
+/******************************************************************************
+
+Welcome to GDB Online.
+GDB online is an online compiler and debugger tool for C, C++, Python, PHP, Ruby,
+C#, VB, Perl, Swift, Prolog, Javascript, Pascal, HTML, CSS, JS
+Code, Compile, Run and Debug online from anywhere in world.
+
+*******************************************************************************/
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    unsigned int account;// account number
+    char name[30],s_name[30];   // account name
+    double balance; // account balance
+    int choice;
+    double sum = 0;
+    FILE *fp;
+
+    if ( (fp=fopen("client.dat","a") )==NULL) {
+        puts ("File could not be opened ");
+    }
+    else{
+        puts("Enter your request");
+        puts("1.Search with Account Name");
+        puts("2.List all account");
+        printf("3.Add an account\n");
+        printf("4.End of run\n?");
+        scanf("%d",&choice);
+
+        while(choice !=4){
+              fscanf(fp,"%d %s %lf",&account,name,&balance);
+              switch(choice){
+                  case 1:
+                    printf("Enter name to search:");
+                    scanf("%s",s_name);
+                   while(!feof(fp)){
+                       if(strcmp(name,s_name)==0)
+                       {
+                           printf("%-10d%-13s%7.2f\n",account,name,balance);
+                           sum+=balance;
+                       }
+                        fscanf(fp,"%d %s %lf",&account,name,&balance);
+
+                   }
+                   printf("The sum of %s is %lf",s_name,sum);
+                  break;
+                  case 2:
+                   while(!feof(fp)){
+                        printf("All account\n");
+                        printf("%-10s%-13s%7s\n","Account","Name","Balance");
+                        while(!feof(fp)){
+                            printf("%-10d%-13s%7.2f\n",account,name,balance);
+                            fscanf(fp,"%d %s %lf",&account,name,&balance);
+                            sum+=balance;
+                        }
+                   }
+                 printf("The sum of all account is %lf",sum);
+                  break;
+                  case 3:
+                    printf("Enter the account number, name, and balance. ");
+                    scanf("%d %s %lf",&account,name,&balance);
+                    fprintf(fp,"%d %s %.2f\n",account,name,balance);
+                    break;
+              }
+
+        printf("?");
+        scanf("%d",&choice);
+        rewind(fp);
+        }
+        fclose(fp);
+    }
+
+    return 0;
+}
